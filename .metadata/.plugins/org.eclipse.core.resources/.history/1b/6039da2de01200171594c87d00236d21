@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+#f {
+	width: 200px;
+	border-width: 5px;
+	border-style: solid;
+	margin: 50px
+}
+.css-style {
+	background-color: red
+}

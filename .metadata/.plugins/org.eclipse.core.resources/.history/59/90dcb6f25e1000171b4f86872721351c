@@ -1,0 +1,5 @@
+package com.santosh.sis.util;
+
+public class EmailUtility {
+
+}

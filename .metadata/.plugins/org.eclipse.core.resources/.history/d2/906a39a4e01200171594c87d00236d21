@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+.box {
+	width: 300px;
+	height:300px;
+	border-width: 1px;
+	border-style: solid;
+	margin: 200px 0px 0px 350px;
+}
+.css-style {
+	background-color: red
+}

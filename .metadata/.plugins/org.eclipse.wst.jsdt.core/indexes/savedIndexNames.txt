@@ -1,0 +1,12 @@
+INDEX VERSION 1.3+D:\EclipseWorkSpace\eclipsews-mars\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2392112878.index
+2254994868.index
+130812215.index
+1472290438.index
+3805616738.index
+2589487890.index
+2650532431.index
+2349891758.index
+1508840873.index
+852052625.index
+975713369.index

@@ -1,0 +1,16 @@
+@CHARSET "ISO-8859-1";
+/* #f {
+	background: red;
+	width: 200px;
+} */
+input {
+	background-color: green;
+	size: 20px;
+	border-color: red
+}
+
+.form-design {
+	background-color: green;
+	size: 20px;
+	border-color: red
+}

@@ -1,0 +1,8 @@
+package com.santosh.sis.util;
+
+public class EmailUtility {
+
+	public void sendEmail(String to) {
+
+	}
+}

@@ -1,0 +1,129 @@
+package com.santosh.sis.dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.santosh.sis.dto.StudentDto;
+import com.santosh.sis.util.DbUtil;
+import com.santosh.sis.util.QueryList;
+
+public class StudentDaoImpl implements StudentDao {
+
+	PreparedStatement ps = null;
+
+	public void saveStudentInfo(StudentDto dto) {
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.CREATE_STUDENT);
+			ps.setString(1, dto.getStudentName());
+			ps.setString(2, dto.getSubject());
+			ps.setString(3, dto.getGender());
+			ps.setString(4, dto.getCollegeName());
+			ps.setString(5, dto.getDepatments());
+			ps.setInt(6, dto.getRoll());
+			ps.setDate(7, new java.sql.Date(dto.getDob().getTime()));
+			ps.setString(8, dto.getEmail());
+//			ps.setString(8, dto.getImageUrl());
+			ps.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public List<StudentDto> getStudentList() {
+		List<StudentDto> studentList = new ArrayList<>();
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.GET_ALL_STUDENT);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				StudentDto dto = new StudentDto();
+				dto.setId(rs.getInt("id"));
+				dto.setCollegeName(rs.getString("college_name"));
+				dto.setStudentName(rs.getString("student_name"));
+				dto.setDepatments(rs.getString("departments"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setDob(rs.getDate("dob"));
+//				dto.setImageUrl(rs.getString("image_url"));
+				dto.setRoll(rs.getInt("roll"));
+				dto.setGender(rs.getString("gender"));
+				dto.setGender(rs.getString("email"));
+				studentList.add(dto);
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return studentList;
+	}
+
+	public StudentDto getStudentById(int id) {
+		StudentDto dto = new StudentDto();
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.GET_STUDENT_BY_ID);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				dto.setId(rs.getInt("id"));
+				dto.setCollegeName(rs.getString("college_name"));
+				dto.setStudentName(rs.getString("student_name"));
+				dto.setDepatments(rs.getString("departments"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setDob(rs.getDate("dob"));
+//				dto.setImageUrl(rs.getString("image_url"));
+				dto.setRoll(rs.getInt("roll"));
+				dto.setGender(rs.getString("gender"));
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return dto;
+	}
+
+	public void deleteStudentInfo(int id) {
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.DELETE_STUDENT);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public void updateStudentInfo(StudentDto dto) {
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.UPDATE_STUDENT);
+			ps.setString(1, dto.getStudentName());
+			ps.setString(2, dto.getSubject());
+			ps.setString(3, dto.getGender());
+			ps.setString(4, dto.getCollegeName());
+			ps.setString(5, dto.getDepatments());
+			ps.setInt(6, dto.getRoll());
+			ps.setDate(7, new java.sql.Date(dto.getDob().getTime()));
+			ps.setInt(8, dto.getId());
+//			ps.setString(9, dto.getImageUrl());
+			ps.executeUpdate();
+
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public String getImageUrlById(int id) {
+		String imageUrl = " ";
+		try {
+			ps = DbUtil.getConnection().prepareStatement(QueryList.GET_STUDENT_BY_ID);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				imageUrl = rs.getString("image_url");
+			}
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return imageUrl;
+	}
+}

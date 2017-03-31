@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="resources/css/login.css">
+<script type="text/javascript">
+	function validateForm() {
+		if (document.login_form.uName.value == "") {
+			alert("User Name should not be left blank");
+		} else if (document.login_form.pass.value == "") {
+			alert("User Name should not be left blank")
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="login_form" action="LoginController" method="post">
+		<div class="login">
+			<input type="text" placeholder="Username" name="uName"> <input
+				type="password" placeholder="password" name="pass"> <input
+				type="submit" value="Sign In">
+		</div>
+	</form>
+</body>
+</html>

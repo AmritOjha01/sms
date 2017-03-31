@@ -1,0 +1,7 @@
+<div class="topnav" id="myTopnav">
+	<a href="home.jsp">Home</a> <a href="StudentController?actions=list">Student
+	</a> <a href="UserController?actions=listUser">User</a>
+	<p><%=session.getAttribute("username")%></p>
+	<a href="LogoutController">Logout</a>
+</div>
+

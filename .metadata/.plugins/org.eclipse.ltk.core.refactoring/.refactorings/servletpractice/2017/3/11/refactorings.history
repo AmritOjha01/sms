@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.santosh.servlet&apos; to &apos;com.santosh.servlet.basic&apos;&#x0D;&#x0A;- Original project: &apos;servletpractice&apos;&#x0D;&#x0A;- Original element: &apos;servletpractice/src/com.santosh.servlet&apos;&#x0D;&#x0A;- Renamed element: &apos;servletpractice/src/com.santosh.servlet.basic&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.santosh.servlet&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.santosh.servlet" name="com.santosh.servlet.basic" qualified="false" references="true" stamp="1489580622239" textual="false" version="1.0"/>
+</session>

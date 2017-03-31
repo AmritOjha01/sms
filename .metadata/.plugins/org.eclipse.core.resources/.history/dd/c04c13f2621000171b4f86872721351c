@@ -1,0 +1,18 @@
+package com.santosh.sis.util;
+
+public class QueryList {
+	//////// student section////////
+	public static final String CREATE_STUDENT = "insert into student_details(student_name,subject, gender, college_name, departments, roll,dob, email)values(?,?,?,?,?,?,?,?)";
+	public static final String UPDATE_STUDENT = "update student_details set student_name= ?,subject=?, gender=?, college_name=?, departments=?, roll=?, dob=?, email=? where id=?";
+	public static final String GET_ALL_STUDENT = "select * from student_details";
+	public static final String DELETE_STUDENT = "delete from student_details where id=?";
+	public static final String GET_STUDENT_BY_ID = "select * from student_details where id=?";
+	public static final String GET_IMAGE_URL_BY_ID = "select image_url from student_details where id=?";
+	//////// User section////////
+	public static final String CREATE_USER = "INSERT INTO users (first_name,last_name, email, dob, username, password) VALUES (?,?,?,?,?,?)";
+	public static final String UPDATE_USER = "UPDATE users SET first_name=?,last_name=?,email=?, dob=? where user_id=?";
+	public static final String GET_ALL_USER = "SELECT * from users";
+	public static final String DELETE_USER = "DELETE from users where user_id=?";
+	public static final String GET_USER_BY_ID = "select * from users where user_id=?";
+	public static final String GET_USER_BY_UNAME_AND_PASS = "select username, password from users where username=? and password=?";
+}

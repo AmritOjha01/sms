@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="resources/CSS/RStyle.css">
+<title>Insert title here</title>
+<%@ include file="header.jsp"%>
+</head>
+<body>
+	<form action="StudentController" method="post" enctype="multipart/form-data">
+		<header>Please Enter Your Details</header>
+		<br> <input type="hidden" name="id" value="${student.id }"
+			readonly="readonly" />
+
+			<label>Student Name: </label> <input type="text" name="sName"
+				value="${student.studentName}" />
+
+
+			<label>College Name: </label> <input type="text" name="cName"
+				value="${student.collegeName}" />
+			<label>Email: </label> <input type="email" name="email"
+				value="${student.email}" />
+			<label>Date of Birth: </label> <input type="date" name="dob"
+				value="${student.dob}" />
+			<label>Roll: </label> <input type="number" name="roll"
+				value="${student.roll}" />
+
+			<c:set var="gender" value="${student.gender }" />
+			<label>Gender: </label> <input type="radio" name="gender"
+				value="male" checked="checked" /> Male <input type="radio"
+				name="gender" value="female" /> Female
+			<label>Departments: </label> <input type="checkbox"
+				name="departments" value="Computer" /> Computer <input
+				type="checkbox" name="departments" value="Electronics" />
+			Electronics <input type="checkbox" name="departments" value="IT" />
+			IT
+			<label>Subjects: </label> <select name="sCombo">
+				<option value="java">JAVA</option>
+				<option value="android">ANDROID</option>
+				<option value="c++">C++</option>
+				<option value="swift">SWIFT</option>
+				<option value="javascript">JAVASCRIPT</option>
+				<option value="net">.NET</option>
+			</select>
+
+		</div>
+			Choose Image:<input type="file" name="photo" size="10"
+				required="required" /><br> <br>
+
+		<div class="newstyle">
+			<button value="register" type="submit">Register</button>
+			<button value="clear" type="reset">Clear</button>
+		</div>
+
+	</form>
+</body>
+</html>

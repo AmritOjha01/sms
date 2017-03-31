@@ -1,0 +1,4 @@
+<a href="StudentController?actions=list">Student List</a>
+<a href="UserController?action=listUser">User List</a>
+<%=session.getAttribute("uname")%>
+<a href="LogoutController">Log Out</a>

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#navbar-collapse">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a href="" class="navbar-brand"> <img
+				src="resources/image/logo.png" height="30" width="150">
+			</a>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<a href="home.jsp">Home</a> <a href="StudentController?actions=list">Student
+				List</a> <a href="UserController?action=listUser">User List</a> <a
+				href="UserController?action=listUser"><%=session.getAttribute("uname")%></a>
+			<a href="LogoutController">Log Out</a> <a
+				href="previousUserPassword.jsp">Reset password</a>
+		</div>
+	</div>
+</nav>

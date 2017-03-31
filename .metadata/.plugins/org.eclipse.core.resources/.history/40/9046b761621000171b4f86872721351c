@@ -1,0 +1,93 @@
+package com.santosh.sis.controller;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.santosh.sis.dto.StudentDto;
+import com.santosh.sis.service.StudentService;
+import com.santosh.sis.service.StudentServiceImpl;
+import com.santosh.sis.util.EmailUtility;
+
+@WebServlet("/StudentController")
+public class StudentController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private static final String STUDENT_LIST_PAGE = "/studentDetails.jsp";
+	private static final String CREATE_STUDENT_PAGE = "/studentForm.jsp";
+	StudentService studentService = new StudentServiceImpl();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String actions = request.getParameter("actions");
+		String forward = " ";
+
+		if (actions.equalsIgnoreCase("list")) {
+			request.setAttribute("students", studentService.getStudentList());
+			forward = STUDENT_LIST_PAGE;
+		} else if (actions.equalsIgnoreCase("delete")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			studentService.deleteStudentInfo(id);
+			request.setAttribute("students", studentService.getStudentList());
+			forward = STUDENT_LIST_PAGE;
+		} else if (actions.equalsIgnoreCase("add")) {
+			forward = CREATE_STUDENT_PAGE;
+
+		} else if (actions.equalsIgnoreCase("edit")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			StudentDto studentDto = studentService.getStudentById(id);
+			request.setAttribute("student", studentDto);
+			forward = CREATE_STUDENT_PAGE;
+
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher(forward);
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		StudentDto studentDto = new StudentDto();
+		studentDto.setStudentName(request.getParameter("sName"));
+		studentDto.setCollegeName(request.getParameter("cName"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dob = null;
+		try {
+			dob = sdf.parse(request.getParameter("dob"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		studentDto.setDob(dob);
+		studentDto.setGender(request.getParameter("gender"));
+		studentDto.setRoll(Integer.parseInt(request.getParameter("roll")));
+		studentDto.setSubject(request.getParameter("sCombo"));
+		studentDto.setEmail(request.getParameter("email"));
+		String[] departments = request.getParameterValues("C1");
+		String department = "";
+		for (String depart : departments) {
+			department += depart + "/";
+		}
+		studentDto.setDepatments(department);
+		String studentId = request.getParameter("id");
+		if (studentId == null || studentId.isEmpty()) {
+			studentService.saveStudentInfo(studentDto);
+			EmailUtility.sendEmail(studentDto.getEmail());
+		} else {
+			studentDto.setId(Integer.parseInt(studentId));
+			studentService.updateStudentInfo(studentDto);
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher(STUDENT_LIST_PAGE);
+		request.setAttribute("students", studentService.getStudentList());
+		rd.forward(request, response);
+
+	}
+
+}

@@ -1,0 +1,6 @@
+@CHARSET "ISO-8859-1";
+.form-design {
+	background-color: #808080;
+	size: 50px;
+	border-color: red
+}
